@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
 const HomeViewStyle = StyleSheet.create({
+  homeViewContainer: {
+    alignItems: 'center'
+  },
   welcomeHeader: {
     marginTop: 50,
     textAlign: "center",
