@@ -18,8 +18,9 @@ class HomeView extends React.Component {
         onPress={() => {
           setInterval(() => {
             //console.log("timer");
+            const { time } = this.state;
             this.setState({
-              time: this.state.time + 1000
+              time: time + 1000
             });
           }, 1000);
         }}
@@ -32,6 +33,7 @@ class HomeView extends React.Component {
   }
 
   renderRunningTimer() {
+    const { time } = this.state;
     return (
       <TouchableOpacity
         style={HomeViewStyle.mainActionButton}
@@ -39,12 +41,13 @@ class HomeView extends React.Component {
           console.log("button pressed");
         }}
       >
-        <Text style={HomeViewStyle.mainActionButtonText}>{this.state.time}</Text>
+        <Text style={HomeViewStyle.mainActionButtonText}>{time}</Text>
       </TouchableOpacity>
     );
   }
 
   render() {
+    const { time } = this.state;
     return (
       <View style={[{ flex: 1 }, HomeViewStyle.homeViewContainer]}>
         <View style={{ flex: 1 }}>
@@ -53,8 +56,7 @@ class HomeView extends React.Component {
           </Text>
         </View>
         <View style={{ flex: 2 }}>
-          <Text>{this.state.time}</Text>
-          {this.renderStartButton()}
+          {time > 0 ? this.renderRunningTimer() : this.renderStartButton()}
         </View>
       </View>
     );
