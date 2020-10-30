@@ -18,10 +18,12 @@ class HomeView extends React.Component {
         onPress={() => {
           setInterval(() => {
             //console.log("timer");
-            const { time } = this.state;
-            this.setState({
-              time: time + 1000
-            });
+            const { time, paused } = this.state;
+            if (!paused) {
+              this.setState({
+                time: time + 1000
+              });
+            }
           }, 1000);
         }}
       >
@@ -38,7 +40,10 @@ class HomeView extends React.Component {
       <TouchableOpacity
         style={HomeViewStyle.mainActionButton}
         onPress={() => {
-          console.log("button pressed");
+          const { paused } = this.state;
+          this.setState({
+            paused: !paused
+          });
         }}
       >
         <Text style={HomeViewStyle.mainActionButtonText}>{time}</Text>
@@ -48,6 +53,7 @@ class HomeView extends React.Component {
 
   render() {
     const { time } = this.state;
+    console.log("paused " + this.state.paused);
     return (
       <View style={[{ flex: 1 }, HomeViewStyle.homeViewContainer]}>
         <View style={{ flex: 1 }}>
